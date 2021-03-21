@@ -3,7 +3,6 @@ package com.springframework.sdi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 import com.springframework.sdi.controllers.ConstructorInjectedController;
 import com.springframework.sdi.controllers.I18nController;
@@ -12,7 +11,8 @@ import com.springframework.sdi.controllers.PetController;
 import com.springframework.sdi.controllers.PropertyInjectedController;
 import com.springframework.sdi.controllers.SetterInjectedController;
 
-@ComponentScan(basePackages = {"com.springframework.pets","com.springframework.sdi"})
+//removed @ComponantScan as we introduced factory pattern
+//@ComponentScan(basePackages = {"com.springframework.pets","com.springframework.sdi"})
 @SpringBootApplication
 public class SpringDiApplication {
 
