@@ -3,18 +3,25 @@ package com.springframework.sdi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import com.springframework.sdi.controllers.ConstructorInjectedController;
 import com.springframework.sdi.controllers.I18nController;
 import com.springframework.sdi.controllers.MyController;
+import com.springframework.sdi.controllers.PetController;
 import com.springframework.sdi.controllers.PropertyInjectedController;
 import com.springframework.sdi.controllers.SetterInjectedController;
 
+@ComponentScan(basePackages = {"com.springframework.pets","com.springframework.sdi"})
 @SpringBootApplication
 public class SpringDiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SpringDiApplication.class, args);
+		
+		PetController petController = ctx.getBean("petController", PetController.class);
+		System.out.println("--- The Best Pet is ---");
+		System.out.println(petController.whichPetIsTheBest());
 		
 		System.out.println("---------Profiles active-----");
 
