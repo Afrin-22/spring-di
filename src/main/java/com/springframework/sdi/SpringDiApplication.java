@@ -10,6 +10,8 @@ import com.springframework.sdi.controllers.MyController;
 import com.springframework.sdi.controllers.PetController;
 import com.springframework.sdi.controllers.PropertyInjectedController;
 import com.springframework.sdi.controllers.SetterInjectedController;
+import com.springframework.sdi.services.PrototypeBean;
+import com.springframework.sdi.services.SingletonBean;
 
 //removed @ComponantScan as we introduced factory pattern
 //@ComponentScan(basePackages = {"com.springframework.pets","com.springframework.sdi"})
@@ -46,6 +48,19 @@ public class SpringDiApplication {
 		System.out.println("---------constructor-----");
 		ConstructorInjectedController cic = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 		System.out.println(cic.getGreeting());
+		
+		System.out.println("---------Bean scopes-----");
+		SingletonBean sb1 = ctx.getBean(SingletonBean.class);
+		System.out.println(sb1.getScopeType());
+		
+		SingletonBean sb2 = ctx.getBean(SingletonBean.class);
+		System.out.println(sb2.getScopeType());
+		
+		PrototypeBean pb1 = ctx.getBean(PrototypeBean.class);
+		System.out.println(pb1.getScopeType());
+		
+		PrototypeBean pb2 = ctx.getBean(PrototypeBean.class);
+		System.out.println(pb2.getScopeType());
 	}
 
 }

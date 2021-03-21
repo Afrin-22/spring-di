@@ -2,6 +2,7 @@ package com.springframework.sdi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
@@ -9,13 +10,13 @@ import com.springframework.pets.PetService;
 import com.springframework.pets.PetServiceFactory;
 import com.springframework.sdi.repositories.EnglishGreetingReporsitoryImpl;
 import com.springframework.sdi.repositories.EnglishGreetingRepository;
-import com.springframework.sdi.services.ConstructorGreetingService;
 import com.springframework.sdi.services.I18nEnglishGreetingService;
 import com.springframework.sdi.services.I18nSpanishGreetingService;
 import com.springframework.sdi.services.PrimaryGreetingService;
 import com.springframework.sdi.services.PropertyGreetingService;
 import com.springframework.sdi.services.SetterGreetingService;
 
+@ImportResource("classpath:sdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
@@ -59,10 +60,10 @@ public class GreetingServiceConfig {
 		return new PrimaryGreetingService();
 	}
 	
-	@Bean
-	ConstructorGreetingService constructorGreetingService() {
-		 return new ConstructorGreetingService();
-	}
+	/*
+	 * @Bean ConstructorGreetingService constructorGreetingService() { return new
+	 * ConstructorGreetingService(); }
+	 */
 
 	@Bean
 	PropertyGreetingService propertyGreetingService() {
