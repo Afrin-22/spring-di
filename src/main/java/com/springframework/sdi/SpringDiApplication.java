@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.springframework.sdi.config.SdiConfiguration;
+import com.springframework.sdi.config.SdiConstructorConfig;
 import com.springframework.sdi.controllers.ConstructorInjectedController;
 import com.springframework.sdi.controllers.I18nController;
 import com.springframework.sdi.controllers.MyController;
@@ -76,6 +77,11 @@ public class SpringDiApplication {
 		System.out.println("password:"+sdiConfig.getPassword());
 		System.out.println("jdbc url:"+sdiConfig.getJdbcurl());
 		
+		System.out.println("-------Constructor Binding-----");
+		SdiConstructorConfig sdiConstructorConfig = ctx.getBean(SdiConstructorConfig.class);
+		System.out.println("username:"+sdiConstructorConfig.getUsername());
+		System.out.println("password:"+sdiConstructorConfig.getPassword());
+		System.out.println("jdbc url:"+sdiConstructorConfig.getJdbcurl());
 	}
 
 }

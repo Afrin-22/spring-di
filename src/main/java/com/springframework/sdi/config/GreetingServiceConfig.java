@@ -1,6 +1,7 @@
 package com.springframework.sdi.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -18,6 +19,7 @@ import com.springframework.sdi.services.PrimaryGreetingService;
 import com.springframework.sdi.services.PropertyGreetingService;
 import com.springframework.sdi.services.SetterGreetingService;
 
+@EnableConfigurationProperties(SdiConstructorConfig.class)
 @ConfigurationProperties
 @ImportResource("classpath:sdi-config.xml")
 @Configuration
@@ -35,12 +37,23 @@ public class GreetingServiceConfig {
 	}
 */
 	//injecting a class which consumes data from properties
-	@Bean
+/*	@Bean
 	FakeDataSource fakeDataSource(SdiConfiguration sdiConfiguration) {
 		FakeDataSource fds = new FakeDataSource();
 		fds.setUsername(sdiConfiguration.getUsername());
 		fds.setPassword(sdiConfiguration.getPassword());
 		fds.setJdbcurl(sdiConfiguration.getJdbcurl());
+		return fds;
+	}
+*/
+	
+	//Constructor Binding
+	@Bean
+	FakeDataSource fakeDataSource(SdiConstructorConfig sdiConstructorConfig) {
+		FakeDataSource fds = new FakeDataSource();
+		fds.setUsername(sdiConstructorConfig.getUsername());
+		fds.setPassword(sdiConstructorConfig.getPassword());
+		fds.setJdbcurl(sdiConstructorConfig.getJdbcurl());
 		return fds;
 	}
 	
