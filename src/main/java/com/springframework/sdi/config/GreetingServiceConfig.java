@@ -19,7 +19,6 @@ import com.springframework.sdi.services.PrimaryGreetingService;
 import com.springframework.sdi.services.PropertyGreetingService;
 import com.springframework.sdi.services.SetterGreetingService;
 
-@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
