@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: 
+      - cat
+      - ES
+      - qa
+datasource:
+  username: ymlRin
+  password: ymlRinoir98
+  jdbcurl:  ymlsomeURL
+  
+---
+
+spring:
+  profiles: prod
+  
+datasource:
+  username: ymlProd_Rin
+  password: ymlProd_Rinoir98
+  jdbcurl:  ymlProd_someURL
