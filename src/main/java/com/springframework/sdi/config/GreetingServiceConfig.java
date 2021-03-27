@@ -1,13 +1,16 @@
 package com.springframework.sdi.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 
 import com.springframework.pets.PetService;
 import com.springframework.pets.PetServiceFactory;
+import com.springframework.sdi.datasource.FakeDataSource;
 import com.springframework.sdi.repositories.EnglishGreetingReporsitoryImpl;
 import com.springframework.sdi.repositories.EnglishGreetingRepository;
 import com.springframework.sdi.services.I18nEnglishGreetingService;
@@ -16,10 +19,21 @@ import com.springframework.sdi.services.PrimaryGreetingService;
 import com.springframework.sdi.services.PropertyGreetingService;
 import com.springframework.sdi.services.SetterGreetingService;
 
+@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
+	@Bean
+	FakeDataSource fakeDataSource( @Value("${datasource.username}") String username, @Value("${datasource.password}") String password,
+			@Value("${datasource.jdbcurl}") String jdbcurl) {
+		FakeDataSource fds = new FakeDataSource();
+		fds.setUsername(username);
+		fds.setPassword(password);
+		fds.setJdbcurl(jdbcurl);
+		return fds;
+	}
+	
 	@Bean
 	PetServiceFactory petServiceFactory() {
 		return new PetServiceFactory();

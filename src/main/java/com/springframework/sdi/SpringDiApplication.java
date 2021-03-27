@@ -10,6 +10,7 @@ import com.springframework.sdi.controllers.MyController;
 import com.springframework.sdi.controllers.PetController;
 import com.springframework.sdi.controllers.PropertyInjectedController;
 import com.springframework.sdi.controllers.SetterInjectedController;
+import com.springframework.sdi.datasource.FakeDataSource;
 import com.springframework.sdi.services.PrototypeBean;
 import com.springframework.sdi.services.SingletonBean;
 
@@ -61,6 +62,12 @@ public class SpringDiApplication {
 		
 		PrototypeBean pb2 = ctx.getBean(PrototypeBean.class);
 		System.out.println(pb2.getScopeType());
+		
+		System.out.println("-------datasource------");
+		FakeDataSource fds = ctx.getBean(FakeDataSource.class);
+		System.out.println("username:"+fds.getUsername());
+		System.out.println("password:"+fds.getPassword());
+		System.out.println("jdbc url:"+fds.getJdbcurl());
 	}
 
 }
