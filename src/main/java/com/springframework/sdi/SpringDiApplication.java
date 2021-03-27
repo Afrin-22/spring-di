@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import com.springframework.sdi.config.SdiConfiguration;
 import com.springframework.sdi.controllers.ConstructorInjectedController;
 import com.springframework.sdi.controllers.I18nController;
 import com.springframework.sdi.controllers.MyController;
@@ -63,11 +64,18 @@ public class SpringDiApplication {
 		PrototypeBean pb2 = ctx.getBean(PrototypeBean.class);
 		System.out.println(pb2.getScopeType());
 		
-		System.out.println("-------datasource------");
+		System.out.println("-------Fake datasource------");
 		FakeDataSource fds = ctx.getBean(FakeDataSource.class);
 		System.out.println("username:"+fds.getUsername());
 		System.out.println("password:"+fds.getPassword());
 		System.out.println("jdbc url:"+fds.getJdbcurl());
+		
+		System.out.println("------Config Props Bean-----");
+		SdiConfiguration sdiConfig = ctx.getBean(SdiConfiguration.class);
+		System.out.println("username:"+sdiConfig.getUsername());
+		System.out.println("password:"+sdiConfig.getPassword());
+		System.out.println("jdbc url:"+sdiConfig.getJdbcurl());
+		
 	}
 
 }

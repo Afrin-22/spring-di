@@ -1,6 +1,5 @@
 package com.springframework.sdi.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,13 +23,24 @@ import com.springframework.sdi.services.SetterGreetingService;
 @Configuration
 public class GreetingServiceConfig {
 
-	@Bean
+	//injecting values directly from properties
+/*	@Bean
 	FakeDataSource fakeDataSource( @Value("${datasource.username}") String username, @Value("${datasource.password}") String password,
 			@Value("${datasource.jdbcurl}") String jdbcurl) {
 		FakeDataSource fds = new FakeDataSource();
 		fds.setUsername(username);
 		fds.setPassword(password);
 		fds.setJdbcurl(jdbcurl);
+		return fds;
+	}
+*/
+	//injecting a class which consumes data from properties
+	@Bean
+	FakeDataSource fakeDataSource(SdiConfiguration sdiConfiguration) {
+		FakeDataSource fds = new FakeDataSource();
+		fds.setUsername(sdiConfiguration.getUsername());
+		fds.setPassword(sdiConfiguration.getPassword());
+		fds.setJdbcurl(sdiConfiguration.getJdbcurl());
 		return fds;
 	}
 	
